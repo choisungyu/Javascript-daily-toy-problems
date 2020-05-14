@@ -32,7 +32,8 @@ Array.prototype.isSubsetOf = function(array) {
     // }
     // this 로 하는 이유? => Array.prototype 이 array 역할을 함 , array 는 this를 가리켜서?
     for (let ele of this) {
-        // 왜 반대로 놓고 짜야 되는지 꼭 알아내기....물어봐 좀 제발.....
+        /* !array.includes(ele) 이렇게 반대로 놓고 짜는 이유는? 
+        => ! 안하고 짜면 return true 가 되어야 하는데, 그러면 참 값이 나올 때, 바로 return true로  탈출함 */
         if (!array.includes(ele)) {
             return false;
         }
@@ -45,24 +46,5 @@ Array.prototype.isSubsetOf = function(array) {
 };
 
 /*
-해결방법 : 
-1. 포함되어 있는지 확인 하기 위해서는 include 사용하면 될 거 같음https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/includes
-2. input array는 
-  [ 'dog', 'cow', 'fox' ]
-  [ 4, 3, 'cat', 1 ] // 문자열 + 숫자
-  [ 'alice', [ 'cat', 'dog' ], 'bob' ] // 배열 안에 배열
-  [ 'alice', 'bob', { name: 'chuck' } ] // 배열 안에 객체
-  [ 'alice', 'bob', [ 'cat' ], { name: 'chuck' } ] // 문자열 + 배열 + 객체 들어 있음.
-  그러기 위해서는 recursion 을 통해서 element 로 배열이나 객체로 올 때에 풀어주는 로직을 짜야 함.
-3. should disregard duplicates => 
-4. should return false if not all of the elements in the first array are in the second =>
-5. 
- advanced 를 해결하려면 어떻게 해야 할까? recursion 다시 복습....
- 1) should handle array element
-      2) should handle object element
-      3) should handle mixed arrays with object/array element
-
-* forEach로 풀어볼 수 잇을까? 안 되면 왜 안 되는지?
-
 
 */
