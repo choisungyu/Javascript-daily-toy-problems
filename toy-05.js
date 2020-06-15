@@ -3,7 +3,7 @@ const bubbleSort = function(array) {
     // 0 1, 2
     let flag = false;
 
-    for (let i = 0; i < array.length - 1; i++) {
+    for (let i = 0; i < array.length ; i++) {
         if (array[i] > array[i + 1]) {
             [array[i], array[i + 1]] = [array[i + 1], array[i]];
             flag = true
