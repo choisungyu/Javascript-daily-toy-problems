@@ -20,29 +20,26 @@
  */
 
 Array.prototype.isSubsetOf = function(array) {
-    // TODO: Your code here!
-    // console.log(array)
-    // for (let i = 0; i < array.length; i++) {
-    // 만약 이렇게 되면 포함되는 문자열 생기면 바로 리턴 시켜버림 => for of 로 순회로 돌려야 함
-    // if (array.includes(this[i])) {
-    //     // console.log(this[i])
-    //     return true;
-    // }
+  // console.log(array);
 
-    // }
-    // this 로 하는 이유? => Array.prototype 이 array 역할을 함 , array 는 this를 가리켜서?
-    for (let ele of this) {
-        /* !array.includes(ele) 이렇게 반대로 놓고 짜는 이유는? 
-        => ! 안하고 짜면 return true 가 되어야 하는데, 그러면 참 값이 나올 때, 바로 return true로  탈출함 */
-        if (!array.includes(ele)) {
-            return false;
-        }
+  let stringify = arr => {
+    return arr.map(ele => {
+      return JSON.stringify(ele);
+    });
+  };
+  let thisElement = stringify(this);
+  // console.log(this);
+
+  let arrayElement = stringify(array);
+
+  // console.log(thisElement);
+  return thisElement.every(ele => {
+    if (arrayElement.includes(ele)) {
+      return true;
+    } else {
+      return false;
     }
-    return true;
-    // for(let el of array) {
-    //   array.
-    // }
-
+  });
 };
 
 /*
