@@ -34,3 +34,33 @@ var randomString = function (len) {
 
   return text;
 };
+
+
+//2
+let longestRun = function (string) {
+  if (string.length === 0) {
+    return null;
+  }
+  let characters = string.split('');
+  let commonCount = [];
+  let count = 1;
+  for (let i = 0; i < characters.length; i++) {
+    if (characters[i] === characters[i + 1]) {
+      count ++;
+    } else {
+        commonCount.push(count)
+        count = 1;
+      }
+  }
+  let largest = Math.max(...commonCount);
+  let largeIndex = commonCount.indexOf(largest);
+  if (largeIndex === 0 && commonCount[0] === 1) {
+    return [0, 0];
+  }
+  if (largeIndex === 0 && commonCount[0] > 1) {
+    return [0, commonCount[0]-1]
+  }
+  let start = commonCount.slice(0, largeIndex).reduce((a, b) => {  return a + b });
+  let end = start + largest - 1;
+  return [start, end];
+};
