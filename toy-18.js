@@ -64,3 +64,26 @@ let longestRun = function (string) {
   let end = start + largest - 1;
   return [start, end];
 };
+
+// # 3
+var longestRun = function(string) {
+  // TODO: Your code here!
+  var max = [0, 0];
+  var curr = [0, 0];
+
+  for (var i = 1; i < string.length; i++) {
+    // 앞 뒤 같은지 비교 => 같으면? 하나 추가
+    if (string[i - 1] === string[i]) {
+      // 1번째 idx 에 +1 식 해주기 위해
+      curr[1] = i;
+      if (curr[1] - curr[0] > max[1] - max[0]) {
+        // 연속되는 숫자를 계속 max에 채워넣음, max보다 큰 숫자가 안 나오면 맥스가 가장 긴 연속된 문자열
+        max = curr;
+      }
+    } else {
+      curr = [i, i];
+    }
+  }
+
+  return max;
+};
